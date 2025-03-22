@@ -1,4 +1,5 @@
 import { tokenCache } from "@/cache";
+import InitialLyout from "@/components/InitialLyout";
 import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
 import { Stack } from "expo-router";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -16,13 +17,7 @@ export default function RootLayout() {
       <ClerkLoaded>
         <SafeAreaProvider>
           <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
-            <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="index" options={{ title: "feed" }} />
-              <Stack.Screen
-                name="notifications"
-                options={{ title: "Notifications" }}
-              />
-            </Stack>
+            <InitialLyout />
           </SafeAreaView>
         </SafeAreaProvider>
       </ClerkLoaded>

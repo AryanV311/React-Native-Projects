@@ -3,8 +3,27 @@ import React from 'react'
 import { styles } from '@/style/auth.style'
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS } from '@/constants/themed'
+import { useSSO } from '@clerk/clerk-expo'
+import { useRouter } from 'expo-router'
 
 const login = () => {
+
+    const {startSSOFlow} = useSSO();
+    const router = useRouter();
+
+    const handleGoogleSignIn = async() => {
+        try {
+            const {createdSessionId, setActive} = await startSSOFlow({strategy: "oauth_google"})
+
+            if(setActive && createdSessionId){
+                setActive({session: createdSessionId})
+                router.replace("/(tabs)")
+            }
+        } catch (error) {
+            console.log("Oauth Error:", error);
+        }
+    }
+
   return (
     <View style={styles.container}>
         {/* Banner  */}
@@ -24,7 +43,7 @@ const login = () => {
         </View>
 
         <View style={styles.loginSection}>
-            <TouchableOpacity style={styles.googleButton} onPress={() => {}} activeOpacity={0.9}>
+            <TouchableOpacity style={styles.googleButton} onPress={handleGoogleSignIn} activeOpacity={0.9}>
                 <View style={styles.googleIconContainer}>
                     <Ionicons name='logo-google' color={COLORS.surface} size={20} />
                 </View>
