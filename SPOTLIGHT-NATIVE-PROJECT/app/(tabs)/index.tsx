@@ -1,11 +1,16 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { Link } from 'expo-router';
+import { useAuth } from '@clerk/clerk-expo';
 
-const Index = () => {
+const index = () => {
+
+  const { signOut } = useAuth();
+
   return (
     <View style={styles.container}>
-      <Link href={"/notifications"}>visit notifictions here</Link>
+      <TouchableOpacity onPress={() => signOut()}>
+        <Text style={{color: "black"}}>Signout</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -19,4 +24,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Index;
+export default index;
