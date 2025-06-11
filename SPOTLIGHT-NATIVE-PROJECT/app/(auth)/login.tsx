@@ -1,10 +1,10 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { styles } from '@/style/auth.style'
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS } from '@/constants/themed'
 import { useSSO } from '@clerk/clerk-expo'
 import { useRouter } from 'expo-router'
+import { styles } from '@/style/auth.style'
 
 const login = () => {
 

@@ -69,6 +69,7 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.surface,
     justifyContent: "center",
     alignItems: "center",
+    marginBottom:20,
   },
   previewImage: {
     width: "100%",
